@@ -144,7 +144,7 @@ class AwsCognitoClient
     /**
      * @var bool
      */
-    protected $boolClientSecret;
+    public $boolClientSecret;
 
 
     /**
