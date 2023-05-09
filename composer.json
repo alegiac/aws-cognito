@@ -1,5 +1,9 @@
 {
     "name": "alegiac/aws-cognito",
+    "repositories": [{
+        "type": "vcs",
+        "url": "http://github.com/ellaisys/aws-cognito"
+    }]
     "description": "AWS Cognito package that allows Auth and other related features using the AWS SDK for PHP",
     "keywords": ["php", "laravel", "aws", "cognito", "auth", "authentication", "oauth", "user pool", "ellaisys"],
     "type": "library",
