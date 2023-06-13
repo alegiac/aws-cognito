@@ -373,7 +373,7 @@ class AwsCognitoClient
      *
      * @param string $username
      * @param string $groupname
-     * 
+     *
      * @return bool
      */
     public function adminAddUserToGroup(string $username, string $groupname)
@@ -528,32 +528,16 @@ class AwsCognitoClient
      * @param string $username
      * @param string $password
      * @param bool $permanent
-     * @return bool
      */
-    public function setUserPassword($username, $password, $permanent = true)
+    public function setUserPassword(string $username, string $password, bool $permanent = true): void
     {
-        try {
-            $this->client->adminSetUserPassword([
+        $this->client->adminSetUserPassword([
                 'Password' => $password,
                 'Permanent' => $permanent,
                 'Username' => $username,
                 'UserPoolId' => $this->poolId,
-            ]);
-        } catch (CognitoIdentityProviderException $e) {
-            if ($e->getAwsErrorCode() === self::USER_NOT_FOUND) {
-                return Password::INVALID_USER;
-            } //End if
-
-            if ($e->getAwsErrorCode() === self::INVALID_PASSWORD) {
-                return Lang::has('passwords.password') ? 'passwords.password' : $e->getAwsErrorMessage();
-            } //End if
-
-            throw $e;
-        } //Try-catch ends
-
-        return Password::PASSWORD_RESET;
-    } //Function ends
-
+        ]);
+    }
 
     /**
      * Changes the password for a specified user in a user pool.
@@ -833,7 +817,7 @@ class AwsCognitoClient
         return $userAttributes;
     } //Function ends
 
-    
+
     /**
      * Generate a new token using refresh token.
      *
@@ -872,7 +856,7 @@ class AwsCognitoClient
 
         return $response;
     } //Function ends
-    
+
 
     /**
      * Revoke all the access tokens from AWS Cognit for a specified refresh-token in a user pool.
